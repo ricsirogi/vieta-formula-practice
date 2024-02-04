@@ -6,13 +6,13 @@
     <style type="text/css">
       :root {
         --font-size: 70px;
-        --border-radius: 5%;
+        --border-radius: 20px;
       }
       body {
         background: #666666;
         font-family: Consolas;
       }
-      .container {
+      .ver-container {
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -21,8 +21,17 @@
         height: auto;
         min-height: 500px;
       }
+      .hor-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        height: auto;
+        border-radius: var(--border-radius);
+      }
       .item {
         max-height: 50%;
+        width: 7em;
         font-size: var(--font-size);
         margin-top: auto;
         background: #505050;
@@ -32,6 +41,10 @@
       }
       .root {
         padding-right: 0px;
+      }
+      .time-display {
+        font-size: 35px;
+        margin: 0px;
       }
       button {
         width: 100%;
@@ -44,7 +57,11 @@
     </style>
   </head>
   <body>
-    <div class="container">
+    <div class="ver-container">
+      <div class="item hor-container">
+        <p class="time-display">Best time 00.00</p>
+        <p class="time-display">Last time 00.00</p>
+      </div>
       <div class="item">
         <p id="equation">placeholder</p>
         <!--Need something here so the button will be the proper height-->
@@ -57,58 +74,6 @@
         <button id="button">Continue</button>
       </div>
     </div>
-    <script>
-      function getRandomInt(min, max) {
-        min = Math.ceil(min)
-        max = Math.floor(max)
-        return Math.floor(Math.random() * (max - min + 1)) + min
-      }
-
-      function generateNewRoots(roots, equation, x1, x2) {
-        temp1 = x1
-        temp2 = x2
-        while (true) {
-          temp1 = getRandomInt(-10, 10)
-          temp2 = getRandomInt(-10, 10)
-          if (temp1 != 0 && temp2 != 0 && ((temp1 != x1 && temp1 != x2) || (temp2 != x1 && temp2 != x2))) {
-            x1 = temp1
-            x2 = temp2
-            a = 1
-            b = -((x1 + x2) / a)
-            c = (x1 * x2) / a
-            if (b == 0) {
-              continue
-            }
-            roots[0].innerHTML = 'x<sub>1</sub>='
-            roots[1].innerHTML = 'x<sub>2</sub>='
-            equation.innerHTML = 'x<sup>2</sup>' + (b < 0 ? b : '+' + b) + (c < 0 ? c : '+' + c) + '=0'
-            console.log(x1, x2, b, c)
-            return [x1, x2]
-            break
-          }
-        }
-      }
-      let x1 = 100
-      let x2 = 100
-      let equation = document.getElementById('equation')
-      let roots = document.querySelectorAll('.root') // Select all elements with class 'root'
-
-      newRoots = generateNewRoots(roots, equation, x1, x2)
-      x1 = newRoots[0]
-      x2 = newRoots[1]
-
-      button.addEventListener('click', (event) => {
-        if (roots[0].innerHTML == 'x<sub>1</sub>=') {
-          // write out the roots
-          roots[0].innerHTML += x1
-          roots[1].innerHTML += x2
-        } else {
-          // generate new roots
-          newRoots = generateNewRoots(roots, equation, x1, x2)
-          x1 = newRoots[0]
-          x2 = newRoots[1]
-        }
-      })
-    </script>
+    <script src="script.js"></script>
   </body>
 </html>
