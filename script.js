@@ -25,7 +25,7 @@ function generateNewRoots(roots, equation, x1, x2) {
       }
       roots[0].innerHTML = 'x<sub>1</sub>='
       roots[1].innerHTML = 'x<sub>2</sub>='
-      equation.innerHTML = 'x<sup>2</sup>' + (b < 0 ? b : '+' + b) + (c < 0 ? c : '+' + c) + '=0'
+      equation.innerHTML = 'x<sup>2</sup>' + (b < 0 ? b : '+' + b) + "x" + (c < 0 ? c : '+' + c) + '=0'
       console.log(x1, x2, b, c)
       return [x1, x2]
     }
